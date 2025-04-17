@@ -1,0 +1,33 @@
+volumes:
+  jayaapp_local_postgres_data: {}
+  jayaapp_local_postgres_data_backups: {}
+
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: jayaapp_local_django
+    container_name: jayaapp_local_django
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app:z
+    env_file:
+      - ./.envs/.local/.env
+    ports:
+      - '8000:8000'
+    command: /start
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+    image: jayaapp_production_postgres
+    container_name: jayaapp_local_postgres
+    volumes:
+      - jayaapp_local_postgres_data:/var/lib/postgresql/data
+      - jayaapp_local_postgres_data_backups:/backups
+    env_file:
+      - ./.envs/.local/.env
