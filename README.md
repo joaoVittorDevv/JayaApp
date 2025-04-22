@@ -84,3 +84,12 @@ Realiza a conversão de valores entre moedas. Requisição JSON:
 `POST /api/transactions/conversion/`
 
 Retorna uma lista de todas as operações realizadas pelo usuário autenticado com o token.
+
+### Documentação Swagger
+
+O sistema também disponibiliza uma documentação interativa via Swagger no seguinte endpoint:
+
+`GET /api/docs/`
+
+> Essa rota é gerada automaticamente utilizando o `SpectacularSwaggerView` e permite testar os endpoints diretamente pela interface web.
+
