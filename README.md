@@ -21,6 +21,35 @@ A estrutura gerada pelo django-cookiecutter é modular e organizada. As principa
 ### `config`
 Contém as configurações gerais do projeto Django e as rotas definidas.
 
+## Como rodar o projeto
+
+Para executar o projeto localmente com Docker, siga os passos abaixo:
+
+1. Crie um arquivo `.env` dentro da pasta `.envs/.local/` com o seguinte conteúdo:
+
+```dotenv
+USE_DOCKER=yes
+IPYTHONDIR=/app/.ipython
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=jayaapp
+POSTGRES_USER=cGZPNYUdOHIdCDubBRlILGZzoxmpSQFT
+POSTGRES_PASSWORD=srdO2HpgbfDMnmTzoiOKzvMRc0gbxf7yq6NErL8XDlOCbyHAgFzsetVwninor7oN
+DATABASE_URL=postgres://cGZPNYUdOHIdCDubBRlILGZzoxmpSQFT:srdO2HpgbfDMnmTzoiOKzvMRc0gbxf7yq6NErL8XDlOCbyHAgFzsetVwninor7oN@postgres:5432/jayaapp
+EXCHANGE_API_KEY=<sua_chave_da_api>
+```
+As credenciais do banco de dados PostgreSQL devem ser mantidas exatamente como estão acima, pois os containers Docker foram configurados para usar essas credenciais localmente.
+Já a variável EXCHANGE_API_KEY deve ser substituída pela sua chave de acesso à API de conversão de moedas.
+
+2. Após criar o arquivo `.env`, execute os comandos:
+
+```bash
+docker-compose build
+docker-compose up
+```
+
+Isso irá construir os containers e iniciar os serviços da aplicação. A API estará disponível em http://localhost:8000/.
+
 ## Endpoints da API
 
 A API disponibiliza três endpoints principais:
